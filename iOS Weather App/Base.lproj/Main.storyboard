@@ -45,6 +45,7 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Cities"/>
                                 <connections>
                                     <action selector="citiesButtonTapped:" destination="BYZ-38-t0r" eventType="touchUpInside" id="p1K-cC-oJu"/>
+                                    <segue destination="kur-R9-RAX" kind="show" identifier="showCities" id="cp3-ih-dkV"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AyI-l2-ieN">
@@ -167,22 +168,22 @@
             </objects>
             <point key="canvasLocation" x="-69.465648854961827" y="3.5211267605633805"/>
         </scene>
-        <!--View Controller-->
+        <!--Cities View Controller-->
         <scene sceneID="edP-Hg-gHz">
             <objects>
-                <viewController id="kur-R9-RAX" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CitiesViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="kur-R9-RAX" customClass="CitiesViewController" customModule="iOS_Weather_App" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="LAI-kI-c40">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="MZR-sa-rAC">
-                                <rect key="frame" x="0.0" y="119" width="393" height="699"/>
+                                <rect key="frame" x="0.0" y="119" width="393" height="664"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexTrackingBackgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="h5e-qb-45G">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="CityDataTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CityDataTableViewCell" id="h5e-qb-45G" customClass="CityDataTableViewCell" customModule="iOS_Weather_App" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="60.333332061767578"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="h5e-qb-45G" id="W3m-eE-VfG">
@@ -215,6 +216,10 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <connections>
+                                            <outlet property="cityDataImage" destination="Pc6-JP-nFN" id="xLb-Ft-LtJ"/>
+                                            <outlet property="cityDataLabel" destination="H7T-J1-B6q" id="Be4-B6-spZ"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -236,6 +241,10 @@
                             <constraint firstItem="JhJ-Bv-Rjc" firstAttribute="top" secondItem="GUG-Z5-d5w" secondAttribute="top" constant="20" id="usS-Yf-UmU"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="umb-OL-QbG"/>
+                    <connections>
+                        <outlet property="citiesTableView" destination="MZR-sa-rAC" id="CCz-7B-ABo"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxe-8g-tJY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

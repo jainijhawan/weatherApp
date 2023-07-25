@@ -20,8 +20,9 @@ class ViewController: UIViewController {
     var locationManager: CLLocationManager?
     var weatherData: WeatherResponse?
     private var lastSearchTxt = ""
-    var cityListDataSource = [String]()
-    var selectedCityNames = [String]()
+    var cityListDataSource: CityResponse?
+    
+    var selectedCityLatLon = [(lat: Double, lon: Double)]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +31,6 @@ class ViewController: UIViewController {
         locationManager?.requestAlwaysAuthorization()
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
-        currentLocationButtonTapped(self)
         searchResultsTableView.backgroundColor = .clear
     }
     
@@ -41,6 +41,13 @@ class ViewController: UIViewController {
             self.weatherTempratureLabel.text = "\(weatherData.current?.tempC ?? 0)"
         } else {
             self.weatherTempratureLabel.text = "\(weatherData.current?.tempF ?? 0)"
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showCities" {
+            guard let vc = segue.destination as? CitiesViewController else { return }
+            vc.selectedCityLatLon = selectedCityLatLon
         }
     }
     
@@ -58,6 +65,7 @@ class ViewController: UIViewController {
                   let weatherData = weatherData else { return }
             self?.weatherData = weatherData
             self?.updateUI(weatherData)
+            self?.selectedCityLatLon.append((lat: lat, lon: lon))
         }
     }
     
@@ -102,8 +110,8 @@ extension ViewController: UISearchBarDelegate {
             guard error == nil,
                   let cityList = cityList else { return }
             DispatchQueue.main.async {
-                self.cityListDataSource.removeAll()
-                self.cityListDataSource = cityList.map { ($0.name ?? "") + ", " + ($0.country ?? "") }
+                self.cityListDataSource?.removeAll()
+                self.cityListDataSource = cityList
                 self.searchResultsTableView.isHidden = cityList.count == 0
                 self.searchResultsTableView.reloadData()
             }
@@ -113,22 +121,25 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        cityListDataSource.count
+        cityListDataSource?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultsTableViewCell", for: indexPath) as? SearchResultsTableViewCell else { return UITableViewCell() }
-        
-        cell.cityNameLabel.text = cityListDataSource[indexPath.row]
+        let city = cityListDataSource?[indexPath.row].name ?? ""
+        let country = cityListDataSource?[indexPath.row].country ?? ""
+        cell.cityNameLabel.text =  city + " " + country
         cell.backgroundColor = .white
         cell.selectionStyle = .none
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let cityName = cityListDataSource[indexPath.row].components(separatedBy: ",").first else { return }
-        selectedCityNames.append(cityName)
-        alert(message: "\(cityName) Added to City List")
+        let selectedCity = cityListDataSource?[indexPath.row]
+        let cityName = selectedCity?.name
+        
+        selectedCityLatLon.append((lat: selectedCity?.lat ?? 0, lon: selectedCity?.lon ?? 0))
+        alert(message: "\(cityName ?? "") Added to City List")
     }
     
 }
