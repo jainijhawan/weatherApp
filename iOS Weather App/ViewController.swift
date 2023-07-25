@@ -19,13 +19,19 @@ class ViewController: UIViewController {
     
     var locationManager: CLLocationManager?
     var weatherData: WeatherResponse?
+    private var lastSearchTxt = ""
+    var cityListDataSource = [String]()
+    var selectedCityNames = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
         locationManager?.requestAlwaysAuthorization()
+        searchResultsTableView.delegate = self
+        searchResultsTableView.dataSource = self
         currentLocationButtonTapped(self)
+        searchResultsTableView.backgroundColor = .clear
     }
     
     @IBAction func segmantControlValueChanged(_ sender: Any) {
@@ -70,7 +76,59 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         if status == .authorizedAlways {
-            print(manager.location?.coordinate)
+            print(manager.location?.coordinate ?? "")
         }
     }
+}
+
+extension ViewController: UISearchBarDelegate {
+  
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchResultsTableView.isHidden = searchText.isEmpty
+        if lastSearchTxt.isEmpty {
+            lastSearchTxt = searchText
+        }
+        NSObject.cancelPreviousPerformRequests(withTarget: self, selector: #selector(self.makeNetworkCall), object: lastSearchTxt)
+        lastSearchTxt = searchText
+        self.perform(#selector(self.makeNetworkCall), with: searchText, afterDelay: 0.9)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
+    }
+    
+    @objc private func makeNetworkCall(sender: String) {
+        Network.shared.getCityAutoComplete(name: lastSearchTxt) { cityList, error in
+            guard error == nil,
+                  let cityList = cityList else { return }
+            DispatchQueue.main.async {
+                self.cityListDataSource.removeAll()
+                self.cityListDataSource = cityList.map { ($0.name ?? "") + ", " + ($0.country ?? "") }
+                self.searchResultsTableView.isHidden = cityList.count == 0
+                self.searchResultsTableView.reloadData()
+            }
+        }
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        cityListDataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "SearchResultsTableViewCell", for: indexPath) as? SearchResultsTableViewCell else { return UITableViewCell() }
+        
+        cell.cityNameLabel.text = cityListDataSource[indexPath.row]
+        cell.backgroundColor = .white
+        cell.selectionStyle = .none
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        guard let cityName = cityListDataSource[indexPath.row].components(separatedBy: ",").first else { return }
+        selectedCityNames.append(cityName)
+        alert(message: "\(cityName) Added to City List")
+    }
+    
 }
