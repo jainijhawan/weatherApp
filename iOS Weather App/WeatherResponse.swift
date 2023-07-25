@@ -16,19 +16,19 @@ struct WeatherResponse: Codable {
 
 // MARK: - Current
 struct Current: Codable {
-    let lastUpdatedEpoch: Int?
+    let lastUpdatedEpoch: Double?
     let lastUpdated: String?
     let tempC, tempF: Double?
-    let isDay: Int?
+    let isDay: Double?
     let condition: Condition?
     let windMph, windKph: Double?
-    let windDegree: Int?
+    let windDegree: Double?
     let windDir: String?
-    let pressureMB: Int?
+    let pressureMB: Double?
     let pressureIn: Double?
-    let precipMm, precipIn, humidity, cloud: Int?
+    let precipMm, precipIn, humidity, cloud: Double?
     let feelslikeC, feelslikeF: Double?
-    let visKM, visMiles, uv: Int?
+    let visKM, visMiles, uv: Double?
     let gustMph, gustKph: Double?
 
     enum CodingKeys: String, CodingKey {
