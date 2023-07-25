@@ -9,7 +9,6 @@ import UIKit
 import CoreLocation
 
 class ViewController: UIViewController {
-
     @IBOutlet weak var weatherDescriptionLabel: UILabel!
     @IBOutlet weak var currentLoactionButton: UIButton!
     @IBOutlet weak var searchBar: UISearchBar!
@@ -40,6 +39,7 @@ class ViewController: UIViewController {
     }
     
     @IBAction func citiesButtonTapped(_ sender: Any) {
+        
     }
     
     
@@ -60,6 +60,7 @@ class ViewController: UIViewController {
             self?.weatherDescriptionLabel.text = weatherData.current?.condition?.text ?? ""
             self?.weatherTempratureLabel.text = "\(weatherData.current?.tempC ?? 0)"
             self?.cityNameLabel.text = weatherData.location?.region ?? ""
+            self?.weatherImageView.image = getWeatherImageFor(code: weatherData.current?.condition?.code ?? 0)
         }
     }
 }

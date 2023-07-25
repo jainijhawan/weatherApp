@@ -10,6 +10,7 @@
 		DE3546852A6D97AF00EEA3AF /* SearchResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3546842A6D97AF00EEA3AF /* SearchResultsTableViewCell.swift */; };
 		DE3546872A6D9E5400EEA3AF /* WeatherResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3546862A6D9E5400EEA3AF /* WeatherResponse.swift */; };
 		DE3546892A6D9E6A00EEA3AF /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3546882A6D9E6A00EEA3AF /* Network.swift */; };
+		DE3546942A702C3A00EEA3AF /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE3546932A702C3A00EEA3AF /* Helper.swift */; };
 		DE69C4392A6C7982008EB26C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69C4382A6C7982008EB26C /* AppDelegate.swift */; };
 		DE69C43B2A6C7982008EB26C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69C43A2A6C7982008EB26C /* SceneDelegate.swift */; };
 		DE69C43D2A6C7982008EB26C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DE69C43C2A6C7982008EB26C /* ViewController.swift */; };
@@ -22,6 +23,7 @@
 		DE3546842A6D97AF00EEA3AF /* SearchResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewCell.swift; sourceTree = "<group>"; };
 		DE3546862A6D9E5400EEA3AF /* WeatherResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherResponse.swift; sourceTree = "<group>"; };
 		DE3546882A6D9E6A00EEA3AF /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		DE3546932A702C3A00EEA3AF /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		DE69C4352A6C7982008EB26C /* iOS Weather App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "iOS Weather App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE69C4382A6C7982008EB26C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DE69C43A2A6C7982008EB26C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -67,6 +69,7 @@
 				DE69C43C2A6C7982008EB26C /* ViewController.swift */,
 				DE3546862A6D9E5400EEA3AF /* WeatherResponse.swift */,
 				DE3546882A6D9E6A00EEA3AF /* Network.swift */,
+				DE3546932A702C3A00EEA3AF /* Helper.swift */,
 				DE3546842A6D97AF00EEA3AF /* SearchResultsTableViewCell.swift */,
 				DE69C43E2A6C7982008EB26C /* Main.storyboard */,
 				DE69C4412A6C7983008EB26C /* Assets.xcassets */,
@@ -148,6 +151,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE3546852A6D97AF00EEA3AF /* SearchResultsTableViewCell.swift in Sources */,
+				DE3546942A702C3A00EEA3AF /* Helper.swift in Sources */,
 				DE3546872A6D9E5400EEA3AF /* WeatherResponse.swift in Sources */,
 				DE3546892A6D9E6A00EEA3AF /* Network.swift in Sources */,
 				DE69C43D2A6C7982008EB26C /* ViewController.swift in Sources */,
