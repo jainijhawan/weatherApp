@@ -205,7 +205,7 @@
                                                     <imageReference key="image" image="sun.max.fill" catalog="system" renderingMode="original"/>
                                                 </imageView>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.89652423469387754" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="Pc6-JP-nFN" firstAttribute="leading" secondItem="H7T-J1-B6q" secondAttribute="trailing" constant="20" id="9k9-ue-6hJ"/>
                                                 <constraint firstAttribute="trailing" secondItem="Pc6-JP-nFN" secondAttribute="trailing" constant="20" id="D8e-9r-owP"/>
