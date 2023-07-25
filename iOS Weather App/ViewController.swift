@@ -28,7 +28,6 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         locationManager = CLLocationManager()
         locationManager?.delegate = self
-        locationManager?.requestAlwaysAuthorization()
         searchResultsTableView.delegate = self
         searchResultsTableView.dataSource = self
         searchResultsTableView.backgroundColor = .clear
@@ -58,6 +57,8 @@ class ViewController: UIViewController {
     
     
     @IBAction func currentLocationButtonTapped(_ sender: Any) {
+        locationManager?.requestAlwaysAuthorization()
+
         guard let lat = locationManager?.location?.coordinate.latitude,
               let lon = locationManager?.location?.coordinate.longitude else { return }
         Network.shared.getWeatherDataFor(lat: lat, lon: lon) { [weak self] weatherData, error in
@@ -140,6 +141,16 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
         
         selectedCityLatLon.append((lat: selectedCity?.lat ?? 0, lon: selectedCity?.lon ?? 0))
         alert(message: "\(cityName ?? "") Added to City List")
+        
+        guard let lat = locationManager?.location?.coordinate.latitude,
+              let lon = locationManager?.location?.coordinate.longitude else { return }
+        Network.shared.getWeatherDataFor(lat: lat, lon: lon) { [weak self] weatherData, error in
+            guard error == nil,
+                  let weatherData = weatherData else { return }
+            self?.weatherData = weatherData
+            self?.updateUI(weatherData)
+            self?.selectedCityLatLon.append((lat: lat, lon: lon))
+        }
     }
     
 }
