@@ -50,37 +50,28 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func citiesButtonTapped(_ sender: Any) {
-        
-    }
-    
-    
-    
     @IBAction func currentLocationButtonTapped(_ sender: Any) {
         locationManager?.requestAlwaysAuthorization()
-
-        guard let lat = locationManager?.location?.coordinate.latitude,
-              let lon = locationManager?.location?.coordinate.longitude else { return }
-        Network.shared.getWeatherDataFor(lat: lat, lon: lon) { [weak self] weatherData, error in
+        guard let latitude = locationManager?.location?.coordinate.latitude,
+              let longitude = locationManager?.location?.coordinate.longitude else { return }
+        Network.shared.getWeatherDataFor(lat: latitude, lon: longitude) { [unowned self] weatherData, error in
             guard error == nil,
                   let weatherData = weatherData else { return }
-            self?.weatherData = weatherData
-            self?.updateUI(weatherData)
-            self?.selectedCityLatLon.append((lat: lat, lon: lon))
+            self.weatherData = weatherData
+            self.updateUI(weatherData)
+            self.selectedCityLatLon.append((lat: latitude, lon: longitude))
         }
     }
     
     func updateUI(_ weatherData: WeatherResponse) {
-        DispatchQueue.main.async { [weak self] in
-            self?.weatherDescriptionLabel.text = weatherData.current?.condition?.text ?? ""
-            self?.weatherTempratureLabel.text = "\(weatherData.current?.tempC ?? 0)"
-            self?.cityNameLabel.text = weatherData.location?.name ?? ""
-            self?.weatherImageView.image = getWeatherImageFor(code: weatherData.current?.condition?.code ?? 0)
+        DispatchQueue.main.async { [unowned self] in
+            self.weatherDescriptionLabel.text = weatherData.current?.condition?.text ?? ""
+            self.weatherTempratureLabel.text = "\(weatherData.current?.tempC ?? 0)"
+            self.cityNameLabel.text = weatherData.location?.name ?? ""
+            self.weatherImageView.image = getWeatherImageFor(code: weatherData.current?.condition?.code ?? 0)
         }
     }
 }
-
-
 
 extension ViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {

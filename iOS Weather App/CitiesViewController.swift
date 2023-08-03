@@ -42,7 +42,7 @@ class CitiesViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CityDataTableViewCell", for: indexPath) as? CityDataTableViewCell else { return UITableViewCell() }
         let weatherData = cityWeatherDataSource[indexPath.row]
-        cell.cityDataLabel.text = (weatherData.location?.name ?? "") + " " + "\(weatherData.current?.tempC ?? 0) C"
+        cell.cityDataLabel.text = (weatherData.location?.name ?? "") + " " + "\(weatherData.current?.tempC ?? 0) °C"
         cell.cityDataImage.image = getWeatherImageFor(code: weatherData.current?.condition?.code ?? 0)
         return cell
     }
