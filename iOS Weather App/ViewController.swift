@@ -50,12 +50,6 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func citiesButtonTapped(_ sender: Any) {
-        
-    }
-    
-    
-    
     @IBAction func currentLocationButtonTapped(_ sender: Any) {
         locationManager?.requestAlwaysAuthorization()
 
