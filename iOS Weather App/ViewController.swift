@@ -73,13 +73,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            print(manager.location?.coordinate ?? "")
-        }
-    }
-}
+extension ViewController: CLLocationManagerDelegate { }
 
 extension ViewController: UISearchBarDelegate {
   
