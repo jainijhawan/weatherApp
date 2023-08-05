@@ -3,7 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -85,7 +85,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="weather-images" translatesAutoresizingMaskIntoConstraints="NO" id="86g-CB-4wJ">
-                                <rect key="frame" x="0.0" y="702" width="393" height="150"/>
+                                <rect key="frame" x="0.0" y="672" width="393" height="150"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="150" id="BBn-6i-7Cb"/>
                                 </constraints>
@@ -126,11 +126,11 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemCyanColor"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
                         <constraints>
                             <constraint firstItem="rBZ-fC-mir" firstAttribute="top" secondItem="Kfh-tO-rzq" secondAttribute="bottom" constant="20" id="0Xo-Sm-q3S"/>
                             <constraint firstItem="kE2-mF-oNP" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="1i1-3f-ICi"/>
-                            <constraint firstAttribute="bottom" secondItem="86g-CB-4wJ" secondAttribute="bottom" id="2XH-71-aSw"/>
+                            <constraint firstAttribute="bottom" secondItem="86g-CB-4wJ" secondAttribute="bottom" constant="30" id="2XH-71-aSw"/>
                             <constraint firstItem="OcS-RT-Lo5" firstAttribute="leading" secondItem="kE2-mF-oNP" secondAttribute="trailing" id="4rs-oN-GQl"/>
                             <constraint firstItem="4Zj-XQ-ZL2" firstAttribute="top" secondItem="rGW-dL-eO2" secondAttribute="bottom" constant="30" id="6dD-Mc-RoC"/>
                             <constraint firstItem="4Zj-XQ-ZL2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Aif-Zf-05f"/>
@@ -224,14 +224,14 @@
                                 </prototypes>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CITIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JhJ-Bv-Rjc">
-                                <rect key="frame" x="20.000000000000007" y="19.999999999999996" width="93.666666666666686" height="34.666666666666657"/>
-                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="29"/>
-                                <color key="textColor" red="0.0" green="0.58823529409999997" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="19.999999999999993" y="20.000000000000004" width="103.33333333333331" height="38.333333333333343"/>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="32"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="GUG-Z5-d5w"/>
-                        <color key="backgroundColor" systemColor="systemCyanColor"/>
+                        <color key="backgroundColor" systemColor="systemMintColor"/>
                         <constraints>
                             <constraint firstItem="MZR-sa-rAC" firstAttribute="top" secondItem="GUG-Z5-d5w" secondAttribute="top" constant="60" id="B6f-O5-7ca"/>
                             <constraint firstItem="GUG-Z5-d5w" firstAttribute="trailing" secondItem="MZR-sa-rAC" secondAttribute="trailing" id="a0Y-UW-GLb"/>
@@ -255,8 +255,8 @@
         <image name="location.circle.fill" catalog="system" width="128" height="123"/>
         <image name="sun.max.fill" catalog="system" width="128" height="125"/>
         <image name="weather-images" width="600" height="400"/>
-        <systemColor name="systemCyanColor">
-            <color red="0.19607843137254902" green="0.67843137254901964" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

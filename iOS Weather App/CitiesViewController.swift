@@ -18,6 +18,10 @@ class CitiesViewController: UIViewController, UITableViewDataSource, UITableView
         super.viewDidLoad()
         citiesTableView.delegate = self
         citiesTableView.dataSource = self
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         getWeatherForAllCities()
     }
     

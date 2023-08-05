@@ -73,13 +73,7 @@ class ViewController: UIViewController {
     }
 }
 
-extension ViewController: CLLocationManagerDelegate {
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedAlways {
-            print(manager.location?.coordinate ?? "")
-        }
-    }
-}
+extension ViewController: CLLocationManagerDelegate { }
 
 extension ViewController: UISearchBarDelegate {
   
@@ -128,10 +122,10 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCity = cityListDataSource?[indexPath.row]
-        let cityName = selectedCity?.name
+        guard let cityName = selectedCity?.name else { return }
         
         selectedCityLatLon.append((lat: selectedCity?.lat ?? 0, lon: selectedCity?.lon ?? 0))
-        alert(message: "\(cityName ?? "") Added to City List")
+        alert(message: "\(cityName) Added to City List")
         
         Network.shared.getWeatherDataFor(lat: selectedCity?.lat ?? 0, lon: selectedCity?.lon ?? 0) { [weak self] weatherData, error in
             guard error == nil,
